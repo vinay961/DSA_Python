@@ -113,21 +113,27 @@ def main():
         print("6. Delete from end")
         print("7. Delete from specific position")
         print("8. Reverse the list")
-        print("9. Exit")
+        print("9. Middle element of list")
+        print("10. Cycle in List")
+        print("11. Exit")
         
         choice = int(input("Enter your choice: "))
-        
         if choice == 1:
             traverse(head)
+            print("------------------------------------------------")
         elif choice == 2:
             data = int(input("Enter data to insert at beginning: "))
+            print("------------------------------------------------")
             head = insert_at_beginning(head, data)
         elif choice == 3:
             data = int(input("Enter data to insert at end: "))
+            print("------------------------------------------")
             head = insert_at_end(head, data)
         elif choice == 4:
             data = int(input("Enter data to insert: "))
+            
             position = int(input("Enter position to insert at: "))
+            print("----------------------------------------------")
             head = insert_at_specific_position(head, data, position)
         elif choice == 5:
             head = delete_from_beginning(head)
@@ -135,10 +141,18 @@ def main():
             head = delete_from_end(head)
         elif choice == 7:
             position = int(input("Enter position to delete from: "))
+            print("------------------------------------------------")
             head = delete_from_specific_position(head, position)
         elif choice == 8:
             head = reverse_list(head)
         elif choice == 9:
+            middle = find_middle(head)
+            print(f"{middle} is middle element.")
+            print("------------------------------------------------")
+        elif choice == 10:
+            print(detect_cycle(head))
+            print("------------------------------------------------")
+        elif choice == 11:
             break
         else:
             print("Invalid choice. Please try again.")
