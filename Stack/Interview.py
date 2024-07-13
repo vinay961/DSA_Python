@@ -55,8 +55,7 @@ def reverse(stack):
         reverse(stack)
         insert(stack,temp)
     
-stack = Stack()
-reverse(stack)
+# reverse(stack)
 
 # Next Greater element in stack
 def second_greatest_element(stack):
@@ -69,6 +68,59 @@ def second_greatest_element(stack):
         max_val = finding(stack)
         stack.push(temp)
         return max(max_val,temp)
-    finding(stack)
+    return finding(stack)
     
-print(second_greatest_element(stack))
+# second_greatest_element(stack)
+
+# Next greater element of all of elements
+def next_greater(arr):
+    stack = []
+    result = [-1]*len(arr)
+    
+    for i in range(len(arr)-1,-1,-1):
+        while stack and stack[-1] <= arr[i]:
+            stack.pop()
+        if stack:
+            result[i] = stack[-1]
+        stack.append(arr[i])
+        
+    return result
+
+arr = [4, 5, 2, 25]
+next_greater(arr)
+        
+
+# sort a stack such that the smallest items are on the top
+def insert_recursive(stack,val):
+    if stack.is_empty() or stack.peek() > val:
+        stack.push(val)
+    else:
+        temp = stack.pop()
+        insert_recursive(stack,val)
+        stack.push(temp)
+        
+def sort_recursive(stack):
+    if not stack.is_empty():
+        temp = stack.pop()
+        sort_recursive(stack)
+        insert_recursive(stack,temp)
+    return stack
+
+# Sorting using temporary stack
+def sort_temp_stack(stack):
+    temp_stack = Stack()
+    while not stack.is_empty():
+        temp = stack.pop()
+        while not temp_stack.is_empty() and temp_stack.peek() > temp:
+            stack.push(temp_stack.pop())
+        temp_stack.push(temp)
+    while not temp_stack.is_empty():
+        stack.push(temp_stack.pop())
+    return stack
+
+stack = Stack()
+stack.push(2)
+stack.push(1)
+stack.push(5)
+stack.push(3)
+print(sort_temp_stack(stack))
