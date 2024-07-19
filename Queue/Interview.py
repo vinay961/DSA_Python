@@ -1,3 +1,4 @@
+# implement circular queue
 class CircularQueue:
     def __init__(self, k):
         self.queue = [None] * k
@@ -43,7 +44,7 @@ class CircularQueue:
             return self.queue[self.front:self.max_size] + self.queue[0:self.rear+1]
 
 from collections import deque
-
+# Generate binary number from 1 to N
 def generate_binary_numbers(n):
     queue = deque()
     result = []
@@ -57,6 +58,7 @@ def generate_binary_numbers(n):
     
     return result
 
+# Check palindrome
 def is_palindrome(s):
     stack = []
     queue = deque()
@@ -72,6 +74,7 @@ def is_palindrome(s):
 
 import heapq
 
+# Implement Priority queue
 class PriorityQueue:
     def __init__(self):
         self.heap = []
