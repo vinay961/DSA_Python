@@ -203,3 +203,31 @@ def container_with_maximum_water(height):
         
     return max_area
 
+# Longest consecutive element sequence
+def longest_consecutive_sequence(arr):
+    if not arr:
+        return []
+    n = len(arr)
+    count = 0
+    for i in range(n):
+        x = arr[i]
+        temp = 0
+        while True:
+            x += 1
+            if x in arr:
+                temp += 1
+            else:
+                break
+        count = max(count,temp+1)
+    return count
+
+# Find all unique triplets that gives sum zero
+def triplets(arr):
+    if not arr:
+        return f"No any triplets exist for empty string."
+    n = len(arr)
+    result = []
+    for i in range(n):
+        x = arr[i]
+        j,k = i+1,n-1
+        
