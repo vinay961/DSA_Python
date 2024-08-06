@@ -124,5 +124,82 @@ def rotate_right(arr,k):
 
     return arr
 
-print(rotate_right([1,2,3,4,5],3))
+# Moves zeroes to end
+def handle_zeroes(arr):
+    if not arr:
+        return 0
+    n = len(arr)
+    index = 0
+    for i in range(n):
+        if arr[i] != 0:
+            arr[index], arr[i] = arr[i], arr[index]
+            index += 1
+    return arr
+
+# First and last position of element in array
+def position_array(arr,k):
+    first_index = 0
+    second_index = 0
+    flag1 = True
+    flag2 = False
+    for i in range(len(arr)):
+        if arr[i] == k and flag1 == True:
+            first_index = i
+            flag1 = False
+            flag2 = True
+        if arr[i] == k and flag2 == True:
+            second_index = i
+    return [first_index+1,second_index+1]
+
+# Product of array except itself
+def product(arr):
+    if not arr:
+        return []
+    n = len(arr)
+    for i in range(n):
+        y = 1
+        x = arr[i]
+        for j in range(n):
+            if arr[j] != x:
+                y *= arr[j]
+        arr[i] = y
+    return arr
+
+
+# Rainwater trapping problem
+def trap_rain_water(height):
+    if not height:
+        return 0
+    left,right = 0,len(height)-1
+    left_max,right_max = height[left],height[right]
+    water_trapped = 0
     
+    while left<right:
+        if left_max<right_max:
+            left += 1
+            left_max = max(left_max,height[left])
+            water_trapped += left_max - height[left]
+        else:
+            right -= 1
+            right_max = max(right_max,height[right])
+            water_trapped += right_max - height[right]
+        
+    return water_trapped
+
+
+# Container which can store maaximum water
+def container_with_maximum_water(height):
+    left,right = 0,len(height)-1
+    max_area = 0
+    
+    while left<right:
+        area = min(height[left],height[right])*(right-left)
+        max_area = max(area,max_area)
+        
+        if height[left]<height[right]:
+            left += 1
+        else:
+            right -= 1
+        
+    return max_area
+
