@@ -53,6 +53,47 @@ def is_Palindrome(head):
         slow = slow.next    
     return True
 
+def reverseList(head):
+    if not head:
+        return print("List is empty")
+    if head.next == None:
+        return head
+    current = head
+    prev = None
+    next = None
+    while current:
+        next = current.next
+        current.next=prev
+        prev=current
+        current=next
+    return prev
+def addOneToList(head):
+    head = reverseList(head)
+    current = head
+    carry = 1
+    prev = None
+    while current:
+        sum = current.data+carry
+        carry = sum/10
+        current.data = sum%10
+        prev = current
+        current = current.next
+    if carry > 0:
+        newNode = Node(carry)
+        prev.next = newNode
+    return reverseList(head)
+
+head = Node(1)
+head.next = Node(2)
+head.next.next = Node(3)
+prev = addOneToList(head)
+current = prev
+while current:
+    print(current.data,end='')
+    current = current.next
+
+    
+
 def main():
     head1 = None
     head2 = None
